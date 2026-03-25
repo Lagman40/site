@@ -1,0 +1,35 @@
+
+/* Медиа-запросы для адаптивности */
+@media (max-width: 768px) {
+  .footer {
+    padding: 40px 15px 25px !important;
+    margin-top: 40px !important;
+  }
+  
+  .footer-container {
+    gap: 30px !important;
+    grid-template-columns: 1fr !important;
+  }
+  
+  .footer-developer-info {
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+}
+
+/* Hover эффекты */
+.footer-link:hover {
+  color: #e67e22 !important;
+}
+
+.footer-social-icon:hover {
+  background-color: #e67e22 !important;
+  transform: translateY(-3px);
+}
+
+/* Для мобильных устройств отключаем трансформацию */
+@media (max-width: 768px) {
+  .footer-social-icon:hover {
+    transform: none !important;
+  }
+}

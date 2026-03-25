@@ -318,3 +318,38 @@
     min-width: 100px;
   }
 }
+
+/* Слоган блок */
+.slogan-block {
+  margin-top: 3rem;
+  text-align: center;
+  padding: 4rem;
+  background: linear-gradient(135deg, #fff5e6 0%, #ffe6d5 100%);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.slogan-text {
+  font-family: 'Marck Script', cursive;
+  font-size: 4rem;
+  font-weight: normal;
+  line-height: 1.2;
+  color: #d45a2b;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  letter-spacing: 2px;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+  .slogan-text {
+    font-size: 2rem;
+  }
+  
+  .slogan-block {
+    margin-top: 1.5rem;
+    padding: 1rem;
+  }
+}
+
+/* Если вы используете Google Fonts, добавьте эту ссылку в ваш index.html или в корневой файл */
+/* <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet"> */

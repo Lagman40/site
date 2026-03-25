@@ -1,29 +1,25 @@
 import React from 'react';
+import './Footer.css'; // CSS файл для медиа-запросов и сложных стилей
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   
+  // ТОЛЬКО БАЗОВЫЕ СТИЛИ БЕЗ МЕДИА-ЗАПРОСОВ
   const styles = {
     footer: {
       backgroundColor: '#2c3e50',
       color: '#ecf0f1',
       padding: '50px 20px 30px',
-      marginTop: '60px',
-      '@media (max-width: 768px)': {
-        padding: '40px 15px 25px',
-        marginTop: '40px'
-      }
+      marginTop: '60px'
+      // УДАЛИТЕ media-запрос
     },
     container: {
       maxWidth: '1400px',
       margin: '0 auto',
       display: 'grid',
       gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-      gap: '40px',
-      '@media (max-width: 768px)': {
-        gap: '30px',
-        gridTemplateColumns: '1fr'
-      }
+      gap: '40px'
+      // УДАЛИТЕ media-запрос
     },
     section: {
       textAlign: 'left'
@@ -90,11 +86,8 @@ const Footer = () => {
       display: 'flex',
       justifyContent: 'center',
       gap: '20px',
-      flexWrap: 'wrap',
-      '@media (max-width: 768px)': {
-        flexDirection: 'column',
-        gap: '8px'
-      }
+      flexWrap: 'wrap'
+      // УДАЛИТЕ media-запрос
     },
     workingHours: {
       marginTop: '10px',
@@ -103,32 +96,9 @@ const Footer = () => {
     }
   };
 
-  return (
-    <footer style={styles.footer}>
-      <style>
-        {`
-          @media (min-width: 769px) {
-            .footer-link:hover {
-              color: #e67e22 !important;
-            }
-            .footer-social-icon:hover {
-              background-color: #e67e22 !important;
-              transform: translateY(-3px);
-            }
-          }
-          
-          @media (max-width: 768px) {
-            .footer-link:hover {
-              color: #e67e22 !important;
-            }
-            .footer-social-icon:hover {
-              background-color: #e67e22 !important;
-            }
-          }
-        `}
-      </style>
-      
-      <div style={styles.container}>
+  return (  // ← ДОБАВЛЕН RETURN
+    <footer style={styles.footer} className="footer">
+      <div style={styles.container} className="footer-container">
         
         {/* Колонка 1: Информация о компании */}
         <div style={styles.section}>
@@ -183,8 +153,7 @@ const Footer = () => {
           Производство натуральной лапши и макаронных изделий
         </div>
         
-        {/* ИНФОРМАЦИЯ О РАЗРАБОТЧИКЕ (ВАРИАНТ 3) */}
-        <div style={styles.developerInfo}>
+        <div style={styles.developerInfo} className="footer-developer-info">
           <span>🌐 Разработка сайта: ИП [Дильмухаметов Э.Р.]</span>
           <span>📧 Email разработчика: [dilmuhametoveduard@yandex.ru]</span>
           <span>📱 Тел.: +7 (933) 043-48-44</span>
@@ -194,4 +163,4 @@ const Footer = () => {
   );
 };
 
-export default Footer; 
+export default Footer;

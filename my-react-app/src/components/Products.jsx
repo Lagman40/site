@@ -184,6 +184,15 @@ const Products = () => {
               <strong>✉️ Email:</strong> kunaksell@yandex.ru</p>
             </div>
           </div>
+
+           {/* НОВЫЙ БЛОК: Слоган */}
+          <div className="slogan-block">
+            <div className="slogan-text">
+              очень<br/>
+              вкусно
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
