@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Прайс-лист | МакарониЯ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Arial', 'Helvetica', sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        /* Контейнер для PDF */
+        .price-list {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        /* Шапка */
+        .header {
+            background: linear-gradient(135deg, #398137 0%, #e67e22 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.95;
+        }
+
+        .date {
+            margin-top: 20px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* Основное содержание */
+        .content {
+            padding: 40px;
+        }
+
+        /* Таблица - адаптивная */
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+        .price-table thead {
+            background: linear-gradient(135deg, #398137 0%, #e67e22 100%);
+            color: white;
+        }
+
+        .price-table th {
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .price-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 15px;
+        }
+
+        .price-table tbody tr:hover {
+            background: #f9f9f9;
+        }
+
+        .product-name {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .product-weight {
+            color: #7f8c8d;
+            font-size: 13px;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #e67e22;
+            font-size: 18px;
+        }
+
+        /* Итого */
+        .summary {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            border-left: 4px solid #e67e22;
+        }
+
+        .summary p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        .summary strong {
+            color: #2c3e50;
+        }
+
+        /* Информация о компании */
+        .company-info {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .info-block {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .info-block h4 {
+            color: #e67e22;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .info-block p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Кнопка скачивания */
+        .download-btn {
+            display: block;
+            width: 250px;
+            margin: 30px auto;
+            background: #e67e22;
+            color: white;
+            text-align: center;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .download-btn:hover {
+            background: #d35400;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(230,126,34,0.3);
+        }
+
+        /* ========== АДАПТИВНЫЕ СТИЛИ ========== */
+        
+        /* Планшеты и маленькие ноутбуки */
+        @media (max-width: 1024px) {
+            .content {
+                padding: 30px;
+            }
+            
+            .price-table th,
+            .price-table td {
+                padding: 12px;
+                font-size: 14px;
+            }
+            
+            .price {
+                font-size: 17px;
+            }
+        }
+        
+        /* Мобильные устройства (телефоны) */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 25px 20px;
+            }
+            
+            .header h1 {
+                font-size: 28px;
+            }
+            
+            .header p {
+                font-size: 14px;
+            }
+            
+            .date {
+                font-size: 12px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            /* Делаем таблицу прокручиваемой на мобильных */
+            .price-table-wrapper {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                margin-bottom: 20px;
+            }
+            
+            .price-table {
+                min-width: 500px;
+                margin-bottom: 0;
+            }
+            
+            .price-table th,
+            .price-table td {
+                padding: 10px;
+                font-size: 13px;
+            }
+            
+            .product-weight {
+                font-size: 12px;
+            }
+            
+            .price {
+                font-size: 16px;
+            }
+            
+            .summary {
+                padding: 15px;
+                margin-top: 20px;
+            }
+            
+            .summary p {
+                font-size: 13px;
+            }
+            
+            .company-info {
+                flex-direction: column;
+                gap: 15px;
+                margin-top: 25px;
+                padding-top: 20px;
+            }
+            
+            .info-block {
+                min-width: auto;
+            }
+            
+            .info-block h4 {
+                font-size: 15px;
+            }
+            
+            .info-block p {
+                font-size: 13px;
+            }
+            
+            .download-btn {
+                width: 100%;
+                max-width: 300px;
+                padding: 14px 20px;
+                font-size: 15px;
+            }
+        }
+        
+        /* Очень маленькие телефоны */
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .header {
+                padding: 20px 15px;
+            }
+            
+            .content {
+                padding: 15px;
+            }
+            
+            .price-table th,
+            .price-table td {
+                padding: 8px;
+                font-size: 12px;
+            }
+            
+            .product-name {
+                font-size: 13px;
+            }
+            
+            .price {
+                font-size: 15px;
+            }
+            
+            .summary p {
+                font-size: 12px;
+            }
+            
+            .info-block p {
+                font-size: 12px;
+            }
+            
+            .download-btn {
+                font-size: 14px;
+                padding: 12px 16px;
+            }
+        }
+
+        /* Для печати (PDF) */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                margin: 0;
+            }
+            
+            .price-list {
+                box-shadow: none;
+                border-radius: 0;
+                max-width: 100%;
+            }
+            
+            .download-btn {
+                display: none;
+            }
+            
+            .price-table tbody tr:hover {
+                background: none;
+            }
+            
+            .header {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .price-table thead {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            /* Для печати убираем прокрутку */
+            .price-table-wrapper {
+                overflow-x: visible;
+            }
+            
+            .price-table {
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="price-list">
+        <div class="header">
+            <h1>🍜 ПРАЙС-ЛИСТ</h1>
+            <p>ООО «МакарониЯ» — натуральная лапша и макаронные изделия</p>
+            <div class="date">
+                Действителен с 22 марта 2026 года
+            </div>
+        </div>
+        
+        <div class="content">
+            <!-- Обертка для горизонтальной прокрутки на мобильных -->
+            <div class="price-table-wrapper">
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>№</th>
+                            <th>Наименование товара</th>
+                            <th>Вес</th>
+                            <th>Цена</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td class="product-name">Бишбармак</td>
+                            <td class="product-weight">500 г</td>
+                            <td class="price">90 ₽</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td class="product-name">Бишбармак</td>
+                            <td class="product-weight">300 г</td>
+                            <td class="price">60 ₽</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td class="product-name">Лапша яичная тукмас</td>
+                            <td class="product-weight">200 г</td>
+                            <td class="price">40 ₽</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td class="product-name">Жайма (Казахский бишбармак)</td>
+                            <td class="product-weight">200 г</td>
+                            <td class="price">40 ₽</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td class="product-name">Лагман короткорезанный</td>
+                            <td class="product-weight">250 г</td>
+                            <td class="price">50 ₽</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td class="product-name">Лагман в контейнере</td>
+                            <td class="product-weight">250 г</td>
+                            <td class="price">60 ₽</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="summary">
+                <p><strong>📦 Условия заказа:</strong></p>
+                <p>• Минимальная сумма заказа: от 500 рублей</p>
+                <p>• Оптовые скидки: при заказе от 10 единиц одного товара — скидка 5%</p>
+                <p>• Доставка: по городу — бесплатно при заказе от 1500 рублей</p>
+                <p>• Самовывоз: г. Сибай, п-т Горняков 6/3-6</p>
+            </div>
+            
+            <div class="company-info">
+                <div class="info-block">
+                    <h4>🏭 О производителе</h4>
+                    <p>ООО «МакарониЯ» — семейное предприятие с 2012 года. Используем только натуральные ингредиенты без консервантов. Вся продукция проходит строгий контроль качества.</p>
+                </div>
+                
+                <div class="info-block">
+                    <h4>📞 Контакты</h4>
+                    <p>Телефон: +7 (999) 134-83-20<br>
+                    Email: kunaksell@yandex.ru<br>
+                    Адрес: г. Сибай, п-т Горняков 6/3-6</p>
+                </div>
+                
+                <div class="info-block">
+                    <h4>⏰ Режим работы</h4>
+                    <p>Пн-Пт: 09:00 - 19:00<br>
+                    Сб: 10:00 - 16:00<br>
+                    Вс: выходной</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <button class="download-btn" onclick="window.print()">
+        📄 Сохранить как PDF
+    </button>
+    
+    <script>
+        // Автоматическое обновление даты
+        const dateElement = document.querySelector('.date');
+        if (dateElement) {
+            const now = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            dateElement.textContent = `Действителен с ${now.toLocaleDateString('ru-RU', options)}`;
+        }
+    </script>
+</body>
+</html>

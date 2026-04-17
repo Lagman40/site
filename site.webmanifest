@@ -1,0 +1,15 @@
+{
+  "name": "МакарониЯ",
+  "short_name": "МакарониЯ",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#e67e22",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/favicon192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
