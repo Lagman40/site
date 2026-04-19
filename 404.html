@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Перенаправление...</title>
+  <script>
+    // Этот скрипт ловит все 404 и возвращает пользователя на главную страницу,
+    // сохраняя правильный адрес для React Router
+    sessionStorage.redirect = location.pathname;
+    location.replace('/НАЗВАНИЕ-ВАШЕГО-РЕПОЗИТОРИЯ/');
+  </script>
+</head>
+<body>
+  <h1>Перенаправление...</h1>
+</body>
+</html>
